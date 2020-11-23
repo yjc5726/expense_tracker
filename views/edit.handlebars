@@ -1,0 +1,14 @@
+<form action="/records/{{record._id}}/edit" method="POST">
+  類別:<select name="category" required value="{{record.category}}">
+    　<option value="home">家居物業</option>
+    　<option value="transportation">交通出行</option>
+    　<option value="entertainment">休閒娛樂</option>
+    　<option value="food">餐飲食品</option>
+    <option value="other">其他</option>
+  </select>
+  日期：<input type="date" name="date" value="{{record.date}}" required>
+  名稱：<input type=" text" name="name" value="{{record.name}}" required>
+  金額：<input type=" number" name="amount" value="{{record.amount}}" required>
+  <button type="submit">Save</button>
+</form>
+<a href="/">back</a>
