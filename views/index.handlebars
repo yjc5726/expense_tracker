@@ -2,14 +2,18 @@
 <form action="/search">
   <label for="category">Choose category:</label>
   <select name="category">
-    <option value="home">家居物業</option>
-    <option value="transportation">交通出行</option>
-    <option value="entertainment">休閒娛樂</option>
-    <option value="food">餐飲食品</option>
-    <option value="other">其他</option>
+    <option value="none" selected disabled hidden>
+      Select an Option
+    </option>
+    <option value="home">home</option>
+    <option value="transportation">transportation</option>
+    <option value="entertainment">entertainment</option>
+    <option value="food">food</option>
+    <option value="other">other</option>
   </select>
   <input type="submit" value="Submit" style="display: inline;">
 </form>
+{{#if keyword}}<div>搜尋類別:{{keyword}}</div>{{/if}}
 <table>
   <tr>
     <td>類別</td>
