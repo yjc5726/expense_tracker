@@ -1,4 +1,15 @@
 <a href="./records/new">Create</a>
+<form action="/search">
+  <label for="category">Choose category:</label>
+  <select name="category">
+    <option value="home">家居物業</option>
+    <option value="transportation">交通出行</option>
+    <option value="entertainment">休閒娛樂</option>
+    <option value="food">餐飲食品</option>
+    <option value="other">其他</option>
+  </select>
+  <input type="submit" value="Submit" style="display: inline;">
+</form>
 <table>
   <tr>
     <td>類別</td>
@@ -11,7 +22,7 @@
     <td>{{this.category}}</td>
     <td>{{this.date}}</td>
     <td>{{this.name}}</td>
-    <td>{{this.amount}}</td>
+    <td class="amount">{{this.amount}}</td>
     <td><a href="./records/{{ this._id }}/edit">edit</a></td>
     <td>
       <form action="./records/{{ this._id }}/delete" method="POST" style="display: inline;">
@@ -21,3 +32,8 @@
   </tr>
   {{/each}}
 </table>
+<div>
+  <span>支出總金額</span>
+  <span id='total-amount'></span>
+</div>
+<a href="/">back</a>

@@ -8,6 +8,15 @@
 
 <body>
   {{{ body }}}
+  <script>
+    const amount = document.querySelectorAll('.amount')
+    const totalAmount = document.querySelector('#total-amount')
+    let total = 0
+    for (let i = 0; i < amount.length; i++) {
+      total += parseInt(amount[i].innerText)
+    }
+    totalAmount.innerHTML = `<span>${total}元</span>` 
+  </script>
 </body>
 
 </html>
