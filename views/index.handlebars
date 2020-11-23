@@ -1,1 +1,16 @@
-<h2>Hello world! 這是 index</h2>
+<table>
+  <tr>
+    <td>類別</td>
+    <td>日期</td>
+    <td>名稱</td>
+    <td>金額</td>
+  </tr>
+  {{#each records}}
+  <tr>
+    <td>{{this.category}}</td>
+    <td>{{this.date}}</td>
+    <td>{{this.name}}</td>
+    <td>{{this.amount}}</td>
+  </tr>
+  {{/each}}
+</table>

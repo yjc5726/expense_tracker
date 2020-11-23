@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose') // 載入 mongoose
 const exphbs = require('express-handlebars');
+const Record = require('./models/record') // 載入 Todo model
 
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
 
@@ -23,7 +24,10 @@ app.set('view engine', 'handlebars')
 
 // 設定首頁路由
 app.get('/', (req, res) => {
-  res.render('index')
+  Record.find() // 取出 Record model 裡的所有資料
+    .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
+    .then(records => res.render('index', { records })) // 將資料傳給 index 樣板
+    .catch(error => console.error(error)) // 錯誤處理
 })
 
 // 設定 port 3000
