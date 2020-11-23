@@ -1,0 +1,13 @@
+<form action="/records" method="POST">
+  類別:<select name="category" required>
+    　<option value="home">家居物業</option>
+    　<option value="transportation">交通出行</option>
+    　<option value="entertainment">休閒娛樂</option>
+    　<option value="food">餐飲食品</option>
+    <option value="other">其他</option>
+  </select>
+  日期：<input type="date" name="date" required>
+  名稱：<input type="text" name="name" required>
+  金額：<input type="number" name="amount" required>
+  <button type="submit">Create</button>
+</form>
