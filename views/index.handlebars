@@ -13,6 +13,11 @@
     <td>{{this.name}}</td>
     <td>{{this.amount}}</td>
     <td><a href="./records/{{ this._id }}/edit">edit</a></td>
+    <td>
+      <form action="./records/{{ this._id }}/delete" method="POST" style="display: inline;">
+        <button type="submit">delete</button>
+      </form>
+    </td>
   </tr>
   {{/each}}
 </table>
