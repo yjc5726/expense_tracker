@@ -4,6 +4,8 @@ const app = express()
 const mongoose = require('mongoose') // 載入 mongoose
 const exphbs = require('express-handlebars');
 const Record = require('./models/record') // 載入 Record model
+const Category = require('./models/category') // 載入 Category model
+
 // 引用 body-parser
 const bodyParser = require('body-parser');
 // const record = require('./models/record');
@@ -32,8 +34,9 @@ app.get('/', (req, res) => {
   Record.find() // 取出 Record model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
     .sort({ date: 'desc' })
-    .then(records => res.render('index', { records })) // 將資料傳給 index 樣板
-    .catch(error => console.error(error)) // 錯誤處理
+    .then((records) => res.render('index', { records, array: ['home','transportation','entertainment','food','other'] }))
+    .catch(error => console.error(error))
+  
 })
 
 app.get('/records/new', (req, res) => {
@@ -51,7 +54,7 @@ app.get('/records/:id/edit', (req, res) => {
   const id = req.params.id
   return Record.findById(id)
     .lean()
-    .then((record) => res.render('edit', { record }))
+    .then((record) => res.render('edit', { record, array: ['home','transportation','entertainment','food','other'] }))
     .catch(error => console.log(error))
 })
 
@@ -83,7 +86,7 @@ app.get('/search', (req, res) => {
    Record.find() // 取出 Record model 裡的所有資料
     .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
     .find({category: `${keyword}`})
-    .then(records => res.render('index', { records,keyword})) // 將資料傳給 index 樣板
+    .then(records => res.render('index', { records, keyword, array: ['home','transportation','entertainment','food','other']})) // 將資料傳給 index 樣板
     .catch(error => console.error(error)) // 錯誤處理
   
 

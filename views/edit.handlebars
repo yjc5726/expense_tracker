@@ -3,15 +3,14 @@
     <option value="{{record.category}}" selected disabled hidden>
       {{record.category}}
     </option>
-    　<option value="home">home</option>
-    　<option value="transportation">transportation</option>
-    　<option value="entertainment">entertainment</option>
-    　<option value="food">food</option>
-    <option value="other">other</option>
+    {{#each array}}
+    　<option value="{{this}}">{{this}}</option>
+    {{/each}}　
   </select>
   日期：<input type="date" name="date" value="{{record.date}}" required>
   名稱：<input type=" text" name="name" value="{{record.name}}" required>
   金額：<input type=" number" name="amount" value="{{record.amount}}" required>
-  <button type="submit">Save</button>
+  <button type="submit" class="box border rounded">Save</button>
 </form>
-<a href="/">back</a>
+<button type="button" class="btn btn-dark"><a class="text-white" href="/"
+    style="text-decoration: none; margin: 0 auto;">back</a></button>

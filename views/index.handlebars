@@ -1,25 +1,30 @@
-<a href="./records/new">Create</a>
-<form action="/search">
+{{#if keyword}}<div class="alert alert-dark" role="alert" style="text-align: center;">搜尋類別:{{keyword}}</div>{{/if}}
+
+<form action="/search" style="text-align: center;">
   <label for="category">Choose category:</label>
   <select name="category">
     <option value="none" selected disabled hidden>
       Select an Option
     </option>
-    <option value="home">home</option>
-    <option value="transportation">transportation</option>
-    <option value="entertainment">entertainment</option>
-    <option value="food">food</option>
-    <option value="other">other</option>
+    {{#each array}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
   </select>
-  <input type="submit" value="Submit" style="display: inline;">
+  <input type="submit" value="Submit" style="display: inline;" class="box border rounded">
 </form>
-{{#if keyword}}<div>搜尋類別:{{keyword}}</div>{{/if}}
-<table>
+
+
+
+
+<table style="text-align: center; margin: 0 auto; border-top:3px #FFD382 solid;border-bottom:3px #82FFFF solid;"
+  cellpadding="10" border='0'>
   <tr>
     <td>類別</td>
     <td>日期</td>
     <td>名稱</td>
     <td>金額</td>
+    <td>編輯</td>
+    <td>刪除</td>
   </tr>
   {{#each records}}
   <tr>
@@ -27,17 +32,18 @@
     <td>{{this.date}}</td>
     <td>{{this.name}}</td>
     <td class="amount">{{this.amount}}</td>
-    <td><a href="./records/{{ this._id }}/edit">edit</a></td>
+    <td><a class="badge badge-success" href="./records/{{ this._id }}/edit">edit</a></td>
     <td>
       <form action="./records/{{ this._id }}/delete" method="POST" style="display: inline;">
-        <button type="submit">delete</button>
+        <button type="submit" class="badge badge-danger">delete</button>
       </form>
     </td>
   </tr>
   {{/each}}
 </table>
-<div>
+<div class="alert alert-dark" role="alert" style="text-align: center;">
   <span>支出總金額</span>
   <span id='total-amount'></span>
+  <button type="button" class="btn btn-dark"><a class="text-white" href="/"
+      style="text-decoration: none; margin: 0 auto;">back</a></button>
 </div>
-<a href="/">back</a>
