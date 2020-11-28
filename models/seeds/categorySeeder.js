@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Category = require('../category')
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }) // 設定連線到 mongoDB
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error!')
