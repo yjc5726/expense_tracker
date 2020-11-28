@@ -1,6 +1,7 @@
 // 載入 express 並建構應用程式伺服器
 const express = require('express')
 const app = express()
+const PORT = process.env.PORT || 3000
 const mongoose = require('mongoose') // 載入 mongoose
 const exphbs = require('express-handlebars');
 const Record = require('./models/record') // 載入 Record model
@@ -8,9 +9,9 @@ const Category = require('./models/category') // 載入 Category model
 
 // 引用 body-parser
 const bodyParser = require('body-parser');
-// const record = require('./models/record');
 
-mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
+mongoose.connect(MONGODB_URI, 'mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
 
 // 取得資料庫連線狀態
 const db = mongoose.connection
@@ -93,5 +94,5 @@ app.get('/search', (req, res) => {
 })
 // 設定 port 3000
 app.listen(3000, () => {
-  console.log('App is running on http://localhost:3000')
+  console.log(`App is running on http://localhost:${PORT}`)
 })

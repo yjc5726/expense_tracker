@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Record = require('../record') // 載入 record model
-mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
+mongoose.connect(MONGODB_URI, 'mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error!')
