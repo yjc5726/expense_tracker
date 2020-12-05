@@ -2,27 +2,14 @@
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
-const mongoose = require('mongoose') // 載入 mongoose
 const exphbs = require('express-handlebars')
 // 引用路由器
 const routes = require('./routes')
 
 // 引用 body-parser
 const bodyParser = require('body-parser')
+require('./config/mongoose')
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true }) // 設定連線到 mongoDB
-
-// 取得資料庫連線狀態
-const db = mongoose.connection
-// 連線異常
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-// 連線成功
-db.once('open', () => {
-  console.log('mongodb connected!')
-})
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
